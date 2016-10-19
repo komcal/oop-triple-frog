@@ -12,11 +12,13 @@ public class GameScreen extends ScreenAdapter {
 	private TripleFrog tripleFrog;
 	private Texture playerImg;
 	private Player player;
+	public World world;
     
 	public GameScreen(TripleFrog tripleFrog) {
         this.tripleFrog = tripleFrog;
         playerImg = new Texture("player.png");
-        player = new Player(100,100);
+        world = new World(tripleFrog);
+        player = world.getPlayer();
     }
     @Override
     public void render(float delta) {
