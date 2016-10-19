@@ -6,18 +6,17 @@ import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Vector2;
 
 public class GameScreen extends ScreenAdapter {
 	private TripleFrog tripleFrog;
 	private Texture playerImg;
-    private int x;
-    private int y;
+	private Player player;
     
 	public GameScreen(TripleFrog tripleFrog) {
         this.tripleFrog = tripleFrog;
         playerImg = new Texture("player.png");
-        x = 100;
-        y = 100;
+        player = new Player(100,100);
     }
     @Override
     public void render(float delta) {
@@ -26,21 +25,22 @@ public class GameScreen extends ScreenAdapter {
     	update(delta);
         SpriteBatch batch = tripleFrog.batch;
         batch.begin();
-        batch.draw(playerImg, x, y);
+        Vector2 pos = player.getPosition();
+        batch.draw(playerImg, pos.x, pos.y);
         batch.end();
     }
     private void update(float delta) {
-        if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-            x -= 10;
-        }
-        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            x += 10;
-        }
         if(Gdx.input.isKeyPressed(Keys.UP)) {
-            y -= 10;
+            player.move(player.DIRECTION_UP);
         }
         if(Gdx.input.isKeyPressed(Keys.DOWN)) {
-            y += 10;
+            player.move(player.DIRECTION_DOWN);
+        }
+        if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+            player.move(player.DIRECTION_LEFT);
+        }
+        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+            player.move(player.DIRECTION_RIGHT);
         }
     }
 
