@@ -12,24 +12,22 @@ public class GameScreen extends ScreenAdapter {
 	private TripleFrog tripleFrog;
 	private Texture playerImg;
 	private Player player;
+	private WorldRenderer worldRenderer;
 	public World world;
     
 	public GameScreen(TripleFrog tripleFrog) {
         this.tripleFrog = tripleFrog;
-        playerImg = new Texture("player.png");
         world = new World(tripleFrog);
         player = world.getPlayer();
+        worldRenderer = new WorldRenderer(tripleFrog, world);
     }
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     	update(delta);
-        SpriteBatch batch = tripleFrog.batch;
-        batch.begin();
-        Vector2 pos = player.getPosition();
-        batch.draw(playerImg, pos.x, pos.y);
-        batch.end();
+    	worldRenderer.render(delta);
+    	
     }
     private void update(float delta) {
         if(Gdx.input.isKeyPressed(Keys.UP)) {
