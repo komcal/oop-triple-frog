@@ -18,8 +18,9 @@ public class BoardRenderer {
         batch.begin();
         for(int r = 0; r < board.getHeight(); r++) {
             for(int c = 0; c < board.getWidth(); c++) {
-                int x = c * 40;
-                int y = TripleFrog.HEIGHT - (r * 40) - 40;
+            	int x = c * WorldRenderer.BLOCK_SIZE;
+            	int y = TripleFrog.HEIGHT - 
+                        (r * WorldRenderer.BLOCK_SIZE) - WorldRenderer.BLOCK_SIZE;
  
                 if(board.hasWallAt(r, c)) {
                     batch.draw(wallImage, x, y);

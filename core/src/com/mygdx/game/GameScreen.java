@@ -31,17 +31,21 @@ public class GameScreen extends ScreenAdapter {
     }
     private void update(float delta) {
         if(Gdx.input.isKeyPressed(Keys.UP)) {
-            player.move(player.DIRECTION_UP);
+            player.setNextDirection(player.DIRECTION_UP);
         }
-        if(Gdx.input.isKeyPressed(Keys.DOWN)) {
-            player.move(player.DIRECTION_DOWN);
+        else if(Gdx.input.isKeyPressed(Keys.DOWN)) {
+            player.setNextDirection(player.DIRECTION_DOWN);
         }
-        if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-            player.move(player.DIRECTION_LEFT);
+        else if(Gdx.input.isKeyPressed(Keys.LEFT)) {
+            player.setNextDirection(player.DIRECTION_LEFT);
         }
-        if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            player.move(player.DIRECTION_RIGHT);
+        else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
+            player.setNextDirection(player.DIRECTION_RIGHT);
         }
+		else {
+			player.setNextDirection(player.DIRECTION_STILL);
+		}
+        world.update(delta);
     }
 
 }

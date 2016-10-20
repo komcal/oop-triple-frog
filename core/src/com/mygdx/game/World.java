@@ -7,7 +7,7 @@ public class World {
  
     World(TripleFrog tripleFrog) {
         this.tripleFrog = tripleFrog;
-        player = new Player(40,500);
+        player = new Player(60,60);
         board = new Board();
     }
  
@@ -17,5 +17,9 @@ public class World {
     
     Board getBoard() {
     	return board;
+    }
+    
+    public void update(float delta) {
+        player.update();
     }
 }

@@ -10,6 +10,7 @@ public class WorldRenderer {
 	public World world;
 	private Player player;
 	private BoardRenderer boardRenderer;
+    public static final int BLOCK_SIZE = 40;
 	
 	public WorldRenderer(TripleFrog tripleFrog, World world) {
         this.tripleFrog = tripleFrog;
@@ -24,7 +25,7 @@ public class WorldRenderer {
         SpriteBatch batch = tripleFrog.batch;
         batch.begin();
         Vector2 pos = player.getPosition();
-        batch.draw(playerImg, pos.x, pos.y);
+        batch.draw(playerImg, pos.x - BLOCK_SIZE/2, TripleFrog.HEIGHT - pos.y - BLOCK_SIZE/2);
         batch.end();
     }
 }
