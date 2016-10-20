@@ -21,6 +21,7 @@ public class GameScreen extends ScreenAdapter {
         player = world.getPlayer();
         worldRenderer = new WorldRenderer(tripleFrog, world);
     }
+	
     @Override
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -29,7 +30,13 @@ public class GameScreen extends ScreenAdapter {
     	worldRenderer.render(delta);
     	
     }
+    
     private void update(float delta) {
+        updatePlayerDirection();
+        world.update(delta);
+    }
+    
+    private void updatePlayerDirection() {
         if(Gdx.input.isKeyPressed(Keys.UP)) {
             player.setNextDirection(player.DIRECTION_UP);
         }
@@ -44,8 +51,7 @@ public class GameScreen extends ScreenAdapter {
         }
 		else {
 			player.setNextDirection(player.DIRECTION_STILL);
-		}
-        world.update(delta);
+		}	
     }
 
 }
