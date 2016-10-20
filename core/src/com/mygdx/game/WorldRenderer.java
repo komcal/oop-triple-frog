@@ -9,16 +9,18 @@ public class WorldRenderer {
 	private Texture playerImg;
 	public World world;
 	private Player player;
+	private BoardRenderer boardRenderer;
 	
 	public WorldRenderer(TripleFrog tripleFrog, World world) {
         this.tripleFrog = tripleFrog;
         this.world = world;
         this.player = world.getPlayer();
- 
+        boardRenderer = new BoardRenderer(tripleFrog.batch, world.getBoard());
         playerImg = new Texture("player.png");
     }
 	
     public void render(float delta) {
+    	boardRenderer.render();
         SpriteBatch batch = tripleFrog.batch;
         batch.begin();
         Vector2 pos = player.getPosition();

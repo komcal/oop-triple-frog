@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class TripleFrog extends Game {
 	public SpriteBatch batch;
 	Texture img;
+    public static final int HEIGHT = 600;
+    public static final int WIDTH = 800;
 	
 	@Override
     public void create () {

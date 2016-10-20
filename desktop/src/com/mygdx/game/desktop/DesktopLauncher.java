@@ -7,6 +7,8 @@ import com.mygdx.game.TripleFrog;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		config.width = TripleFrog.WIDTH;
+		config.height = TripleFrog.HEIGHT;
 		new LwjglApplication(new TripleFrog(), config);
 	}
 }
