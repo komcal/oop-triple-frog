@@ -11,6 +11,7 @@ public class Player {
     public final int DIRECTION_STILL = 0;
     private int currentDirection;
     private int nextDirection;
+    private World world;
     
     private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
@@ -21,8 +22,9 @@ public class Player {
     };
     public static final int SPEED = 5;
     
-    public Player(int x, int y) {
+    public Player(int x, int y, World world) {
         position = new Vector2(x,y);
+        this.world = world;
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
     }    
@@ -42,7 +44,11 @@ public class Player {
     
     public void update() {
         if(isAtCenter()) {
-            currentDirection = nextDirection;
+            if(canMoveInDirection(nextDirection)) {
+                currentDirection = nextDirection;    
+            } else {
+                currentDirection = DIRECTION_STILL;    
+            }
         }
         position.x += SPEED * DIR_OFFSETS[currentDirection][0];
         position.y += SPEED * DIR_OFFSETS[currentDirection][1];
@@ -53,5 +59,24 @@ public class Player {
  
         return ((((int)position.x - blockSize/2) % blockSize) == 0) &&
                 ((((int)position.y - blockSize/2) % blockSize) == 0);
+    }
+    
+    private boolean canMoveInDirection(int dir) {
+    	Board board = world.getBoard();
+    	
+    	int newRow = getRow() + DIR_OFFSETS[dir][1]; 
+        int newCol = getColumn()  + DIR_OFFSETS[dir][0];
+        if(!board.hasWallAt(newRow, newCol)) {
+        	return true;
+        }	
+        return false;
+    }
+    
+    private int getRow() {
+        return ((int)position.y) / WorldRenderer.BLOCK_SIZE; 
+    }
+ 
+    private int getColumn() {
+        return ((int)position.x) / WorldRenderer.BLOCK_SIZE; 
     }
 }

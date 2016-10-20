@@ -7,7 +7,8 @@ public class World {
  
     World(TripleFrog tripleFrog) {
         this.tripleFrog = tripleFrog;
-        player = new Player(60,60);
+        board = new Board();
+        player = new Player(60,60, this);
         board = new Board();
     }
  
