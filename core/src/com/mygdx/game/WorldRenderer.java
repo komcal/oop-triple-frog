@@ -17,7 +17,7 @@ public class WorldRenderer {
         this.world = world;
         this.player = world.getPlayer();
         boardRenderer = new BoardRenderer(tripleFrog.batch, world.getBoard());
-        playerImg = new Texture("player.png");
+        playerImg = new Texture("lotus1.png");
     }
 	
     public void render(float delta) {
