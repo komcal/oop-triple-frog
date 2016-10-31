@@ -63,12 +63,15 @@ public class GameScreen extends ScreenAdapter {
 		if (Gdx.input.isKeyPressed(Keys.SPACE) && !randoming) {
 			randoming = true;
 		}
+		
 		if (!Gdx.input.isKeyPressed(Keys.SPACE) && randoming) {
 			randoming = false;
 			int row = player.getRow();
 			int column = player.getColumn();
-			board.update(row, column, player.getCurrentItem());
-			player.randomItem();
+			if (board.isEmptyArea(row, column)) {
+				board.update(row, column, player.getCurrentItem());
+				player.randomItem();	
+			}
 		}
 	}
 

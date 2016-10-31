@@ -55,9 +55,7 @@ public class Board {
     }
     
     public void update(int r, int c, int item) {
-    	if (isEmptyArea(r, c)) {
-    		MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
-    	}
+    	MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
     }
 
 }
