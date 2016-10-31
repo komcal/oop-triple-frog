@@ -50,8 +50,7 @@ public class Player {
                 currentDirection = DIRECTION_STILL;    
             }
         }
-        position.x += SPEED * DIR_OFFSETS[currentDirection][0];
-        position.y += SPEED * DIR_OFFSETS[currentDirection][1];
+        move(currentDirection);
     }
     
     public boolean isAtCenter() {
@@ -72,11 +71,11 @@ public class Player {
         return false;
     }
     
-    private int getRow() {
+    public int getRow() {
         return ((int)position.y) / WorldRenderer.BLOCK_SIZE; 
     }
  
-    private int getColumn() {
+    public int getColumn() {
         return ((int)position.x) / WorldRenderer.BLOCK_SIZE; 
     }
 }

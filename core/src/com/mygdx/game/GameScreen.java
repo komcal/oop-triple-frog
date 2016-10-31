@@ -14,18 +14,25 @@ public class GameScreen extends ScreenAdapter {
 	private Player player;
 	private WorldRenderer worldRenderer;
 	public World world;
+	private Board board;
+	private Texture background;
+	private SpriteBatch batch;
     
 	public GameScreen(TripleFrog tripleFrog) {
         this.tripleFrog = tripleFrog;
         world = new World(tripleFrog);
         player = world.getPlayer();
+        board = world.getBoard();
         worldRenderer = new WorldRenderer(tripleFrog, world);
+        background = new Texture("bg.png");
+        this.batch = tripleFrog.batch;
     }
 	
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 1);
-        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        batch.draw(background, 0, 0);
+        batch.end();
     	update(delta);
     	worldRenderer.render(delta);
     	
@@ -33,6 +40,7 @@ public class GameScreen extends ScreenAdapter {
     
     private void update(float delta) {
         updatePlayerDirection();
+        updateBoard();
         world.update(delta);
     }
     
@@ -52,6 +60,14 @@ public class GameScreen extends ScreenAdapter {
 		else {
 			player.setNextDirection(player.DIRECTION_STILL);
 		}	
+    }
+    
+    private void updateBoard() {
+    	if(Gdx.input.isKeyPressed(Keys.SPACE)) {
+    		int row = player.getRow();
+    		int column = player.getColumn();
+    		board.update(row, column, '1');
+    	}
     }
 
 }

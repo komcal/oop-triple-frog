@@ -13,20 +13,21 @@ public class PlayerTest {
 
     @Before
     public void setUp() {
-		player = new Player(10, 10);
+		player = new Player(60, 60, null);
     }
 
 	
 	@Test
 	public void testPlayerShouldMoveCorrectly() {
-		player.move(player.DIRECTION_UP);
-		assertEquals(10 - player.SPEED, player.getPosition().y, DELTA);
-		assertEquals(10, player.getPosition().x, DELTA);
+		player.move(player.DIRECTION_RIGHT);
+		assertEquals(60, player.getPosition().y, DELTA);
+		assertEquals(60 + player.SPEED, player.getPosition().x, DELTA);
 		
 		player.move(player.DIRECTION_RIGHT);
 		player.move(player.DIRECTION_DOWN);
-		assertEquals(10, player.getPosition().y, DELTA);
-		assertEquals(10 + player.SPEED, player.getPosition().x, DELTA);
+		assertEquals(60 + player.SPEED, player.getPosition().y, DELTA);
+		assertEquals(65 + player.SPEED, player.getPosition().x, DELTA);
+		
 	}
 
 }

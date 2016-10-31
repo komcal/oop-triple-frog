@@ -34,8 +34,18 @@ public class Board {
         return MAP[r].charAt(c) == '#';
     }
  
-    public boolean hasDotAt(int r, int c) {
+    public boolean isEmptyArea(int r, int c) {
         return MAP[r].charAt(c) == '.';
+    }
+    
+    public boolean hasLotus1At(int r, int c) {
+    	return MAP[r].charAt(c) == '1';
+    }
+    
+    public void update(int r, int c, char item) {
+    	if (isEmptyArea(r, c)) {
+    		MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
+    	}
     }
 
 }
