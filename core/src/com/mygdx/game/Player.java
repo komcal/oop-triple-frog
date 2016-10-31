@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import java.util.Random;
+
 import com.badlogic.gdx.math.Vector2;
 
 public class Player {
@@ -12,6 +14,7 @@ public class Player {
     private int currentDirection;
     private int nextDirection;
     private World world;
+    private int currentItem;
     
     private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
@@ -27,6 +30,7 @@ public class Player {
         this.world = world;
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
+        currentItem = 0;
     }    
  
     public Vector2 getPosition() {
@@ -78,4 +82,14 @@ public class Player {
     public int getColumn() {
         return ((int)position.x) / WorldRenderer.BLOCK_SIZE; 
     }
+    
+    public int getCurrentItem() {
+    	return currentItem;
+    }
+    
+    public void randomItem() {
+    	Random rand = new Random();
+    	currentItem = rand.nextInt(4);
+    }
+    
 }

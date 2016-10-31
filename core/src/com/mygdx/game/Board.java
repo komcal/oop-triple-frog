@@ -38,11 +38,23 @@ public class Board {
         return MAP[r].charAt(c) == '.';
     }
     
+    public boolean hasLotus0At(int r, int c) {
+    	return MAP[r].charAt(c) == '0';
+    }
+    
     public boolean hasLotus1At(int r, int c) {
     	return MAP[r].charAt(c) == '1';
     }
     
-    public void update(int r, int c, char item) {
+    public boolean hasLotus2At(int r, int c) {
+    	return MAP[r].charAt(c) == '2';
+    }
+    
+    public boolean hasLotus3At(int r, int c) {
+    	return MAP[r].charAt(c) == '3';
+    }
+    
+    public void update(int r, int c, int item) {
     	if (isEmptyArea(r, c)) {
     		MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
     	}

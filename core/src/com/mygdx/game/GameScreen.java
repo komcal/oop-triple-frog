@@ -17,57 +17,59 @@ public class GameScreen extends ScreenAdapter {
 	private Board board;
 	private Texture background;
 	private SpriteBatch batch;
-    
+	private boolean randoming = false;
+
 	public GameScreen(TripleFrog tripleFrog) {
-        this.tripleFrog = tripleFrog;
-        world = new World(tripleFrog);
-        player = world.getPlayer();
-        board = world.getBoard();
-        worldRenderer = new WorldRenderer(tripleFrog, world);
-        background = new Texture("bg.png");
-        this.batch = tripleFrog.batch;
-    }
-	
-    @Override
-    public void render(float delta) {
-        batch.begin();
-        batch.draw(background, 0, 0);
-        batch.end();
-    	update(delta);
-    	worldRenderer.render(delta);
-    	
-    }
-    
-    private void update(float delta) {
-        updatePlayerDirection();
-        updateBoard();
-        world.update(delta);
-    }
-    
-    private void updatePlayerDirection() {
-        if(Gdx.input.isKeyPressed(Keys.UP)) {
-            player.setNextDirection(player.DIRECTION_UP);
-        }
-        else if(Gdx.input.isKeyPressed(Keys.DOWN)) {
-            player.setNextDirection(player.DIRECTION_DOWN);
-        }
-        else if(Gdx.input.isKeyPressed(Keys.LEFT)) {
-            player.setNextDirection(player.DIRECTION_LEFT);
-        }
-        else if(Gdx.input.isKeyPressed(Keys.RIGHT)) {
-            player.setNextDirection(player.DIRECTION_RIGHT);
-        }
-		else {
+		this.tripleFrog = tripleFrog;
+		world = new World(tripleFrog);
+		player = world.getPlayer();
+		board = world.getBoard();
+		worldRenderer = new WorldRenderer(tripleFrog, world);
+		background = new Texture("bg.png");
+		this.batch = tripleFrog.batch;
+	}
+
+	@Override
+	public void render(float delta) {
+		batch.begin();
+		batch.draw(background, 0, 0);
+		batch.end();
+		update(delta);
+		worldRenderer.render(delta);
+
+	}
+
+	private void update(float delta) {
+		updatePlayerDirection();
+		updateBoard();
+		world.update(delta);
+	}
+
+	private void updatePlayerDirection() {
+		if (Gdx.input.isKeyPressed(Keys.UP)) {
+			player.setNextDirection(player.DIRECTION_UP);
+		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
+			player.setNextDirection(player.DIRECTION_DOWN);
+		} else if (Gdx.input.isKeyPressed(Keys.LEFT)) {
+			player.setNextDirection(player.DIRECTION_LEFT);
+		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
+			player.setNextDirection(player.DIRECTION_RIGHT);
+		} else {
 			player.setNextDirection(player.DIRECTION_STILL);
-		}	
-    }
-    
-    private void updateBoard() {
-    	if(Gdx.input.isKeyPressed(Keys.SPACE)) {
-    		int row = player.getRow();
-    		int column = player.getColumn();
-    		board.update(row, column, '1');
-    	}
-    }
+		}
+	}
+
+	private void updateBoard() {
+		if (Gdx.input.isKeyPressed(Keys.SPACE) && !randoming) {
+			randoming = true;
+		}
+		if (!Gdx.input.isKeyPressed(Keys.SPACE) && randoming) {
+			randoming = false;
+			int row = player.getRow();
+			int column = player.getColumn();
+			board.update(row, column, player.getCurrentItem());
+			player.randomItem();
+		}
+	}
 
 }

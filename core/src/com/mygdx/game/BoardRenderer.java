@@ -7,8 +7,10 @@ public class BoardRenderer {
 	private Board board;
     private SpriteBatch batch;
     private Texture wallImage;
-    private Texture leafImage;
+    private Texture lotus0Image;
     private Texture lotus1Image;
+    private Texture lotus2Image;
+    private Texture lotus3Image;
     private Texture waterImage;
     
     public BoardRenderer(SpriteBatch batch, Board board) {
@@ -18,8 +20,10 @@ public class BoardRenderer {
  
     public void render() {
     	wallImage = new Texture("wall.png");
-    	leafImage = new Texture("leaf.png");
+    	lotus0Image = new Texture("lotus0.png");
     	lotus1Image = new Texture("lotus1.png");
+    	lotus2Image = new Texture("lotus2.png");
+    	lotus3Image = new Texture("lotus3.png");
     	waterImage = new Texture("water.png");
         batch.begin();
         for(int r = 0; r < board.getHeight(); r++) {
@@ -33,8 +37,17 @@ public class BoardRenderer {
                 else if(board.isEmptyArea(r, c)) {
                 	batch.draw(waterImage, x, y);
                 }
+                else if(board.hasLotus0At(r, c)) {
+                	batch.draw(lotus0Image, x, y);
+                }
                 else if(board.hasLotus1At(r, c)) {
                 	batch.draw(lotus1Image, x, y);
+                }
+                else if(board.hasLotus2At(r, c)) {
+                	batch.draw(lotus2Image, x, y);
+                }
+                else if(board.hasLotus3At(r, c)) {
+                	batch.draw(lotus3Image, x, y);
                 }
             }
         }
