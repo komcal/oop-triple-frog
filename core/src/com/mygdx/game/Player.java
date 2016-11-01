@@ -14,7 +14,7 @@ public class Player {
     private int currentDirection;
     private int nextDirection;
     private World world;
-    private int currentItem;
+    private char currentItem;
     
     private static final int [][] DIR_OFFSETS = new int [][] {
         {0,0},
@@ -30,7 +30,7 @@ public class Player {
         this.world = world;
         currentDirection = DIRECTION_STILL;
         nextDirection = DIRECTION_STILL;
-        currentItem = 0;
+        currentItem = '0';
     }    
  
     public Vector2 getPosition() {
@@ -83,13 +83,13 @@ public class Player {
         return ((int)position.x) / WorldRenderer.BLOCK_SIZE; 
     }
     
-    public int getCurrentItem() {
+    public char getCurrentItem() {
     	return currentItem;
     }
     
     public void randomItem() {
     	Random rand = new Random();
-    	currentItem = rand.nextInt(4);
+    	currentItem = Integer.toString(rand.nextInt(4)).charAt(0);
     }
     
 }

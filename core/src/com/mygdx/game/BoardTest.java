@@ -30,5 +30,21 @@ public class BoardTest {
     	board.update(0, 0, '1');
     	assertEquals(false, board.hasLotus1At(0, 0));
     }
-
+    
+    @Test
+    public void shouldHasSameItem() {
+    	board.update(1, 1, '1');
+    	assertEquals(true, board.isSameItem(1, 1, '1'));
+    }
+    
+    @Test
+    public void shouldRemoveStickItem() {
+    	board.update(1, 1, '1');
+    	board.update(1, 2, '1');
+    	board.update(2, 2, '1');
+    	assertEquals(true, board.isEmptyArea(1, 1));
+    	assertEquals(true, board.isEmptyArea(1, 2));
+    	assertEquals(false, board.isEmptyArea(2, 2));
+    	
+    }
 }

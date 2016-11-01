@@ -30,7 +30,7 @@ public class WorldRenderer {
         SpriteBatch batch = tripleFrog.batch;
         batch.begin();
         Vector2 pos = player.getPosition();
-        playerImg = arrayImage[player.getCurrentItem()];
+        playerImg = arrayImage[(int)player.getCurrentItem() - 48];
         batch.draw(playerImg, pos.x - BLOCK_SIZE/2, TripleFrog.HEIGHT - pos.y - BLOCK_SIZE/2);
         batch.end();
     }
