@@ -62,10 +62,15 @@ public class Board {
     public void update(int r, int c, char item) {
     	if (isEmptyArea(r, c)) {
     		updateNextToItem(r, c, item);
-    		if(countStickItem >= 3) {
+    		if(countStickItem >= 3 && item != '.') {
     			item = tranformItem(item);
+    			if(item != '.') {
+    				update(r, c, item);
+    			}
     		}
-    		MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
+    		else {
+    			MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
+    		}
     	}
     	else if (item == '.') {
     		MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
