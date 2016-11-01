@@ -90,7 +90,6 @@ public class Player {
     public void randomItem() {
     	Random rand = new Random();
     	int random = rand.nextInt(25);
-    	System.out.println(random);
     	if (random < 2) {
     		currentItem = Integer.toString(3).charAt(0);
     	}
