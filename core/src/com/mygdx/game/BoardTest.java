@@ -46,5 +46,12 @@ public class BoardTest {
     	assertEquals(true, board.isEmptyArea(1, 2));
     	assertEquals(false, board.isEmptyArea(2, 2));
     	
+    	board.update(3, 1, '4');
+    	board.update(3, 2, '4');
+    	board.update(3, 3, '4');
+    	assertEquals(false, board.isEmptyArea(3, 1));
+    	assertEquals(false, board.isEmptyArea(3, 2));
+    	assertEquals(false, board.isEmptyArea(3, 3));
+    	
     }
 }

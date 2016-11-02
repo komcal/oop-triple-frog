@@ -55,8 +55,12 @@ public class Board {
     	return MAP[r].charAt(c) == '3';
     }
     
+    public boolean hasFrogAt(int r, int c) {
+    	return MAP[r].charAt(c) == '4';
+    }
+    
     public boolean isSameItem(int r, int c, char item) {
-    	return MAP[r].charAt(c) == item;
+    	return (MAP[r].charAt(c) == item && item != '4');
     }
     
     public void update(int r, int c, char item) {

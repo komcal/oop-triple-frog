@@ -15,7 +15,8 @@ public class WorldRenderer {
     		new Texture("lotus0.png"),
     		new Texture("lotus1.png"),
     		new Texture("lotus2.png"),
-    		new Texture("lotus3.png")
+    		new Texture("lotus3.png"),
+    		new Texture("frog.png")
     };
 	
 	public WorldRenderer(TripleFrog tripleFrog, World world) {

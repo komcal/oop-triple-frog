@@ -89,7 +89,7 @@ public class Player {
     
     public void randomItem() {
     	Random rand = new Random();
-    	int random = rand.nextInt(25);
+    	int random = rand.nextInt(27);
     	if (random < 2) {
     		currentItem = Integer.toString(3).charAt(0);
     	}
@@ -103,6 +103,9 @@ public class Player {
 
     	else if (random < 25) {
     		currentItem = Integer.toString(0).charAt(0);
+    	}
+    	else if (random < 27) {
+    		currentItem = Integer.toString(4).charAt(0);
     	}
     	
     }
