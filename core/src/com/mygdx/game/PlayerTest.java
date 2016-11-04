@@ -16,7 +16,6 @@ public class PlayerTest {
 		player = new Player(60, 60, null);
     }
 
-	
 	@Test
 	public void testPlayerShouldMoveCorrectly() {
 		player.move(player.DIRECTION_RIGHT);

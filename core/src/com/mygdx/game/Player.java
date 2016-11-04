@@ -92,19 +92,13 @@ public class Player {
     	int random = rand.nextInt(38);
     	if (random < 1) {
     		currentItem = Integer.toString(3).charAt(0);
-    	}
-    	else if (random < 3) {
+    	} else if (random < 3) {
     		currentItem = Integer.toString(2).charAt(0);
-    	}
-
-    	else if (random < 6) {
+    	} else if (random < 6) {
     		currentItem = Integer.toString(1).charAt(0);
-    	}
-
-    	else if (random < 30) {
+    	} else if (random < 30) {
     		currentItem = Integer.toString(0).charAt(0);
-    	}
-    	else if (random < 38) {
+    	} else if (random < 38) {
     		currentItem = Integer.toString(4).charAt(0);
     	}
     	

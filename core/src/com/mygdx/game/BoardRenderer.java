@@ -28,30 +28,25 @@ public class BoardRenderer {
     	waterImage = new Texture("water.png");
     	frogImage = new Texture("frog.png");
         batch.begin();
-        for(int r = 0; r < board.getHeight(); r++) {
-            for(int c = 0; c < board.getWidth(); c++) {
+        for (int r = 0; r < board.getHeight(); r++) {
+            for (int c = 0; c < board.getWidth(); c++) {
             	int x = c * WorldRenderer.BLOCK_SIZE;
             	int y = TripleFrog.HEIGHT - 
                         (r * WorldRenderer.BLOCK_SIZE) - WorldRenderer.BLOCK_SIZE;
  
                 if(board.hasWallAt(r, c)) {
-                }
-                else if(board.isEmptyArea(r, c)) {
+                
+                } else if (board.isEmptyArea(r, c)) {
                 	batch.draw(waterImage, x, y);
-                }
-                else if(board.hasLotus0At(r, c)) {
+                } else if (board.hasLotus0At(r, c)) {
                 	batch.draw(lotus0Image, x, y);
-                }
-                else if(board.hasLotus1At(r, c)) {
+                } else if (board.hasLotus1At(r, c)) {
                 	batch.draw(lotus1Image, x, y);
-                }
-                else if(board.hasLotus2At(r, c)) {
+                } else if (board.hasLotus2At(r, c)) {
                 	batch.draw(lotus2Image, x, y);
-                }
-                else if(board.hasLotus3At(r, c)) {
+                } else if (board.hasLotus3At(r, c)) {
                 	batch.draw(lotus3Image, x, y);
-                }
-                else if(board.hasFrogAt(r, c)) {
+                } else if (board.hasFrogAt(r, c)) {
                 	batch.draw(frogImage, x, y);
                 }
             }

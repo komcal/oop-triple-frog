@@ -65,17 +65,15 @@ public class Board {
     public void update(int r, int c, char item) {
     	if (isEmptyArea(r, c)) {
     		updateNextToItem(r, c, item);
-    		if(countStickItem >= 3 && item != '.') {
+    		if (countStickItem >= 3 && item != '.') {
     			item = tranformItem(item);
-    			if(item != '.') {
+    			if (item != '.') {
     				update(r, c, item);
     			}
-    		}
-    		else {
+    		} else {
     			MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
     		}
-    	}
-    	else if (item == '.') {
+    	} else if (item == '.') {
     		MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
     	}
     }
@@ -83,8 +81,7 @@ public class Board {
     private char tranformItem(char item) {
     	if(item == '3') {
     		item = '.';
-    	}
-    	else {
+    	} else {
     		item++;
     	}
     	return item;
@@ -98,11 +95,11 @@ public class Board {
     	queueX[q] = c;
 		queueY[q] = r;
 		q++;
-		while(q > 0) {
+		while (q > 0) {
 			q--;
 			c = queueX[q];
 			r = queueY[q];
-			if(countStickItem >= 3) {
+			if (countStickItem >= 3) {
 				update(r, c, '.');
 			}
     		if (isSameItem(r-1, c, item)) {
@@ -130,9 +127,6 @@ public class Board {
 				countStickItem++;
 			}
 			
-		}
-    	
-    	
+		}	
     }
-
 }
