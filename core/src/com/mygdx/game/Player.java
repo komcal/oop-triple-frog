@@ -89,22 +89,22 @@ public class Player {
     
     public void randomItem() {
     	Random rand = new Random();
-    	int random = rand.nextInt(27);
-    	if (random < 2) {
+    	int random = rand.nextInt(38);
+    	if (random < 1) {
     		currentItem = Integer.toString(3).charAt(0);
     	}
-    	else if (random < 4) {
+    	else if (random < 3) {
     		currentItem = Integer.toString(2).charAt(0);
     	}
 
-    	else if (random < 7) {
+    	else if (random < 6) {
     		currentItem = Integer.toString(1).charAt(0);
     	}
 
-    	else if (random < 25) {
+    	else if (random < 30) {
     		currentItem = Integer.toString(0).charAt(0);
     	}
-    	else if (random < 27) {
+    	else if (random < 38) {
     		currentItem = Integer.toString(4).charAt(0);
     	}
     	

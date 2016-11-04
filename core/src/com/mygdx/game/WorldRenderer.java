@@ -18,6 +18,7 @@ public class WorldRenderer {
     		new Texture("lotus3.png"),
     		new Texture("frog.png")
     };
+    private Texture howtoImage = new Texture("howto.png");
 	
 	public WorldRenderer(TripleFrog tripleFrog, World world) {
         this.tripleFrog = tripleFrog;
@@ -33,6 +34,7 @@ public class WorldRenderer {
         Vector2 pos = player.getPosition();
         playerImg = arrayImage[(int)player.getCurrentItem() - 48];
         batch.draw(playerImg, pos.x - BLOCK_SIZE/2, TripleFrog.HEIGHT - pos.y - BLOCK_SIZE/2);
+        batch.draw(howtoImage, 500, 40);
         batch.end();
     }
 }
