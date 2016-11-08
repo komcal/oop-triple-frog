@@ -23,6 +23,7 @@ public class Player {
         {0,1},
         {-1,0}
     };
+    
     public static final int SPEED = 5;
     
     public Player(int x, int y, World world) {

@@ -88,8 +88,8 @@ public class Board {
     }
     
     public void updateNextToItem(int r, int c, char item) {
-    	int[] queueX = new int[100000];
-    	int[] queueY = new int[100000];
+    	int[] queueX = new int[100];
+    	int[] queueY = new int[100];
     	int q = 0;
     	countStickItem = 1;
     	queueX[q] = c;

@@ -36,7 +36,6 @@ public class GameScreen extends ScreenAdapter {
 		batch.end();
 		update(delta);
 		worldRenderer.render(delta);
-
 	}
 
 	private void update(float delta) {
