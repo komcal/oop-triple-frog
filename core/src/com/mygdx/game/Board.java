@@ -1,5 +1,7 @@
 package com.mygdx.game;
 
+import java.util.Random;
+
 public class Board {
 	private String[] MAP = new String [] {
             "##########",
@@ -23,6 +25,9 @@ public class Board {
     public final char LOTUS2 = '2';
     public final char LOTUS3 = '3';
     public final char FROG = '4';
+    public int[] frogsColumn = new int[200];
+    public int[] frogsRow = new int[200];
+    public int frogArrayIndex = 0;
  
     public Board() {
         height = MAP.length;
@@ -78,10 +83,46 @@ public class Board {
     				update(r, c, item);
     			}
     		} else {
-    			MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
+    			if (item == FROG) {
+    				frogsRow[frogArrayIndex] = r;
+    				frogsColumn[frogArrayIndex] = c;
+    				frogArrayIndex++;
+    			}
+    			updateMap(r, c, item);
+    			changeFrogsPocition();
     		}
     	} else if (item == EMPTY_AREA) {
-    		MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
+    		updateMap(r, c, item);
+    	}
+    }
+    private void updateMap(int r, int c, char item) {
+    	MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
+    }
+    
+    private void changeFrogsPocition() {
+    	for (int i = 0 ; i < frogArrayIndex ; i++) {
+    		int r = frogsRow[i];
+        	int c = frogsColumn[i];
+    		updateMap(r, c, '.');
+    		
+    		randomNewFrogPosition(i);
+    		r = frogsRow[i];
+        	c = frogsColumn[i];
+    		updateMap(r, c, '4');
+    	}
+    }
+    
+    private void randomNewFrogPosition(int index) {
+    	int r = frogsRow[index];
+    	int c = frogsColumn[index];
+    	
+		Random rand = new Random();
+    	r = rand.nextInt(10);
+    	c = rand.nextInt(10);
+    	
+    	if (isEmptyArea(r, c)) {
+        	frogsRow[index] = r;
+        	frogsColumn[index] = c;	
     	}
     }
     
