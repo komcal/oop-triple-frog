@@ -16,6 +16,13 @@ public class Board {
     private int height;
     private int width;
     private int countStickItem;
+    public final char WALL = '#';
+    public final char EMPTY_AREA = '.';
+    public final char LOTUS0 = '0';
+    public final char LOTUS1 = '1';
+    public final char LOTUS2 = '2';
+    public final char LOTUS3 = '3';
+    public final char FROG = '4';
  
     public Board() {
         height = MAP.length;
@@ -31,56 +38,56 @@ public class Board {
     }
     
     public boolean hasWallAt(int r, int c) {
-        return MAP[r].charAt(c) == '#';
+        return MAP[r].charAt(c) == WALL;
     }
  
     public boolean isEmptyArea(int r, int c) {
-        return MAP[r].charAt(c) == '.';
+        return MAP[r].charAt(c) == EMPTY_AREA;
     }
     
     public boolean hasLotus0At(int r, int c) {
-    	return MAP[r].charAt(c) == '0';
+    	return MAP[r].charAt(c) == LOTUS0;
     }
     
     public boolean hasLotus1At(int r, int c) {
-    	return MAP[r].charAt(c) == '1';
+    	return MAP[r].charAt(c) == LOTUS1;
     }
     
     public boolean hasLotus2At(int r, int c) {
-    	return MAP[r].charAt(c) == '2';
+    	return MAP[r].charAt(c) == LOTUS2;
     }
     
     public boolean hasLotus3At(int r, int c) {
-    	return MAP[r].charAt(c) == '3';
+    	return MAP[r].charAt(c) == LOTUS3;
     }
     
     public boolean hasFrogAt(int r, int c) {
-    	return MAP[r].charAt(c) == '4';
+    	return MAP[r].charAt(c) == FROG;
     }
     
     public boolean isSameItem(int r, int c, char item) {
-    	return (MAP[r].charAt(c) == item && item != '4');
+    	return (MAP[r].charAt(c) == item && item != FROG);
     }
     
     public void update(int r, int c, char item) {
     	if (isEmptyArea(r, c)) {
     		updateNextToItem(r, c, item);
-    		if (countStickItem >= 3 && item != '.') {
+    		if (countStickItem >= 3 && item != EMPTY_AREA) {
     			item = tranformItem(item);
-    			if (item != '.') {
+    			if (item != EMPTY_AREA) {
     				update(r, c, item);
     			}
     		} else {
     			MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
     		}
-    	} else if (item == '.') {
+    	} else if (item == EMPTY_AREA) {
     		MAP[r] = MAP[r].substring(0, c) + item + MAP[r].substring(c + 1);
     	}
     }
     
     private char tranformItem(char item) {
     	if(item == '3') {
-    		item = '.';
+    		item = EMPTY_AREA;
     	} else {
     		item++;
     	}
@@ -100,7 +107,7 @@ public class Board {
 			c = queueX[q];
 			r = queueY[q];
 			if (countStickItem >= 3) {
-				update(r, c, '.');
+				update(r, c, EMPTY_AREA);
 			}
     		if (isSameItem(r-1, c, item)) {
 				queueX[q] = c;
