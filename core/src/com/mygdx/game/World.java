@@ -4,12 +4,14 @@ public class World {
     private Player player;
     private TripleFrog tripleFrog;
     private Board board;
+    private Score score;
  
     World(TripleFrog tripleFrog) {
         this.tripleFrog = tripleFrog;
-        board = new Board();
         player = new Player(60, 60, this);
-        board = new Board();
+        score = new Score(0);
+        board = new Board(score);
+        
     }
  
     Player getPlayer() {
@@ -18,6 +20,10 @@ public class World {
     
     Board getBoard() {
     	return board;
+    }
+    
+    Score getScore() {
+    	return score;
     }
     
     public void update(float delta) {

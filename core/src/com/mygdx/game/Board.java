@@ -28,10 +28,12 @@ public class Board {
     public int[] frogsColumn = new int[200];
     public int[] frogsRow = new int[200];
     public int frogArrayIndex = 0;
+    Score score;
  
-    public Board() {
+    public Board(Score score) {
         height = MAP.length;
         width = MAP[0].length();
+        this.score = score;
     }
  
     public int getHeight() {
@@ -128,8 +130,10 @@ public class Board {
     
     private char tranformItem(char item) {
     	if(item == '3') {
+    		this.score.increaseThreePoint();
     		item = EMPTY_AREA;
     	} else {
+    		this.score.increaseTwoPoint();
     		item++;
     	}
     	return item;
