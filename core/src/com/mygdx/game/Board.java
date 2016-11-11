@@ -29,6 +29,8 @@ public class Board {
     public int[] frogsRow = new int[200];
     public int frogArrayIndex = 0;
     Score score;
+    private int[] queueX = new int[100];
+	private int[] queueY = new int[100];
  
     public Board(Score score) {
         height = MAP.length;
@@ -140,8 +142,6 @@ public class Board {
     }
     
     public void updateNextToItem(int r, int c, char item) {
-    	int[] queueX = new int[100];
-    	int[] queueY = new int[100];
     	int q = 0;
     	countStickItem = 1;
     	queueX[q] = c;
@@ -154,31 +154,28 @@ public class Board {
 			if (countStickItem >= 3) {
 				update(r, c, EMPTY_AREA);
 			}
-    		if (isSameItem(r-1, c, item)) {
-				queueX[q] = c;
-				queueY[q] = r-1;
-				q++;
-				countStickItem++;
+    		if (isSameItem(r - 1, c, item)) {
+				q = enqueue(c, r - 1, q);
 			}
-			if (isSameItem(r+1, c, item)) {
-				queueX[q] = c;
-				queueY[q] = r+1;
-				q++;
-				countStickItem++;
+			if (isSameItem(r + 1, c, item)) {
+				
+				q = enqueue(c, r + 1, q);
 			}
-			if (isSameItem(r, c-1, item)) {
-				queueX[q] = c-1;
-				queueY[q] = r;
-				q++;
-				countStickItem++;
+			if (isSameItem(r, c - 1, item)) {
+				q = enqueue(c - 1, r, q);
 			}
-			if (isSameItem(r, c+1, item)) {
-				queueX[q] = c+1;
-				queueY[q] = r;
-				q++;
-				countStickItem++;
+			if (isSameItem(r, c + 1, item)) {
+				q = enqueue(c + 1, r, q);
 			}
 			
 		}	
+    }
+    
+    private int enqueue(int c, int r, int q) {
+    	queueX[q] = c;
+		queueY[q] = r;
+		q++;
+		countStickItem++;
+    	return q;
     }
 }
