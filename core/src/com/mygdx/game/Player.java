@@ -98,7 +98,7 @@ public class Player {
     	} else if (random < 6) {
     		currentItem = Integer.toString(1).charAt(0);
     	} else if (random < 30) {
-    		currentItem = Integer.toString(0).charAt(0);
+    		currentItem = Integer.toString(3).charAt(0);
     	} else if (random < 38) {
     		currentItem = Integer.toString(4).charAt(0);
     	}

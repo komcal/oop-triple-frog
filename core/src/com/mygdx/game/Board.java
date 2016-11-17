@@ -88,7 +88,7 @@ public class Board {
     		updateNextToItem(r, c, item);
     		if (countStickItem >= 3 && item != EMPTY_AREA && item != LOTUS4) {
     			item = tranformItem(item);
-    			if (item != EMPTY_AREA && item != LOTUS4) {
+    			if (item != EMPTY_AREA) {
     				update(r, c, item);
     			}
     		} else {

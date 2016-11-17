@@ -35,12 +35,12 @@ public class BoardRenderer {
             	int x = c * WorldRenderer.BLOCK_SIZE;
             	int y = TripleFrog.HEIGHT - 
                         (r * WorldRenderer.BLOCK_SIZE) - WorldRenderer.BLOCK_SIZE;
- 
-                if(board.hasWallAt(r, c)) {
-                
-                } else if (board.isEmptyArea(r, c)) {
+            	
+            	
+                if(!board.hasWallAt(r, c)) {
                 	batch.draw(waterImage, x, y);
-                } else if (board.hasLotus0At(r, c)) {
+                }
+                if (board.hasLotus0At(r, c)) {
                 	batch.draw(lotus0Image, x, y);
                 } else if (board.hasLotus1At(r, c)) {
                 	batch.draw(lotus1Image, x, y);
