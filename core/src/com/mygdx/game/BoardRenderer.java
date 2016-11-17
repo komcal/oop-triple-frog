@@ -11,6 +11,7 @@ public class BoardRenderer {
     private Texture lotus1Image;
     private Texture lotus2Image;
     private Texture lotus3Image;
+    private Texture lotus4Image;
     private Texture waterImage;
     private Texture frogImage;
     
@@ -27,6 +28,7 @@ public class BoardRenderer {
     	lotus3Image = new Texture("lotus3.png");
     	waterImage = new Texture("water.png");
     	frogImage = new Texture("frog.png");
+    	lotus4Image = new Texture("lotus4.png");
         batch.begin();
         for (int r = 0; r < board.getHeight(); r++) {
             for (int c = 0; c < board.getWidth(); c++) {
@@ -48,6 +50,8 @@ public class BoardRenderer {
                 	batch.draw(lotus3Image, x, y);
                 } else if (board.hasFrogAt(r, c)) {
                 	batch.draw(frogImage, x, y);
+                } else if (board.hasLotus4At(r, c)) {
+                	batch.draw(lotus4Image, x, y);
                 }
             }
         }

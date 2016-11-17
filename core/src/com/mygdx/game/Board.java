@@ -24,6 +24,7 @@ public class Board {
     public final char LOTUS1 = '1';
     public final char LOTUS2 = '2';
     public final char LOTUS3 = '3';
+    public final char LOTUS4 = '5';
     public final char FROG = '4';
     public int[] frogsColumn = new int[200];
     public int[] frogsRow = new int[200];
@@ -74,16 +75,20 @@ public class Board {
     	return MAP[r].charAt(c) == FROG;
     }
     
+    public boolean hasLotus4At(int r, int c) {
+    	return MAP[r].charAt(c) == LOTUS4;
+    }
+    
     public boolean isSameItem(int r, int c, char item) {
-    	return (MAP[r].charAt(c) == item && item != FROG);
+    	return (MAP[r].charAt(c) == item && item != FROG && item != LOTUS4);
     }
     
     public void update(int r, int c, char item) {
     	if (isEmptyArea(r, c)) {
     		updateNextToItem(r, c, item);
-    		if (countStickItem >= 3 && item != EMPTY_AREA) {
+    		if (countStickItem >= 3 && item != EMPTY_AREA && item != LOTUS4) {
     			item = tranformItem(item);
-    			if (item != EMPTY_AREA) {
+    			if (item != EMPTY_AREA && item != LOTUS4) {
     				update(r, c, item);
     			}
     		} else {
@@ -133,7 +138,7 @@ public class Board {
     private char tranformItem(char item) {
     	if(item == '3') {
     		this.score.increaseThreePoint();
-    		item = EMPTY_AREA;
+    		item = LOTUS4;
     	} else {
     		this.score.increaseTwoPoint();
     		item++;
